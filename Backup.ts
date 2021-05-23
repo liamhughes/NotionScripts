@@ -9,8 +9,8 @@ const databaseID = "dae968ec2e6a4e15aec83a25c790b1a3";
 
 const main = async () => {
     const notion = new Client({
-        auth: process.env.NOTION_TOKEN,
-        logLevel: LogLevel.DEBUG,
+        "auth": process.env.NOTION_TOKEN,
+        "logLevel": LogLevel.DEBUG,
     });
 
     const tasksDatabase = await notion.databases.retrieve({"database_id": databaseID});
@@ -25,19 +25,19 @@ const main = async () => {
 
     while (hasMore){
         const request : DatabasesQueryParameters = {
-            database_id: databaseID,
-            sorts: [
+            "database_id": databaseID,
+            "sorts": [
                 {
-                    property: "Category",
-                    direction: "ascending",
+                    "property": "Category",
+                    "direction": "ascending",
                 },
                 {
-                    property: "Priority",
-                    direction: "ascending",
+                    "property": "Priority",
+                    "direction": "ascending",
                 },
                 {
-                    property: "Start Date",
-                    direction: "ascending",
+                    "property": "Start Date",
+                    "direction": "ascending",
                 }
             ],
         };
