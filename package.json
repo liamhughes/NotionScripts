@@ -1,0 +1,31 @@
+{
+  "name": "notionscripts",
+  "version": "1.0.0",
+  "description": "Some scripts to manage my Tasks database in Notion",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liamhughes/NotionScripts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liamhughes/NotionScripts/issues"
+  },
+  "homepage": "https://github.com/liamhughes/NotionScripts#readme",
+  "dependencies": {
+    "@notionhq/client": "^0.1.6",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "eslint": "^7.27.0",
+    "typescript": "^4.2.4"
+  }
+}
