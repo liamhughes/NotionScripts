@@ -2,12 +2,13 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { Client, LogLevel } from "@notionhq/client";
-import { DatabasesQueryParameters } from "@notionhq/client/build/src/api-endpoints";
+import { DatabasesQueryParameters, PagesUpdateParameters } from "@notionhq/client/build/src/api-endpoints";
 
 const category = "Personal";
 const categoryPropertyName = "Category";
 const databaseID = "dae968ec2e6a4e15aec83a25c790b1a3";
 const defaultCategory = "Personal";
+const priorityPropertyName = "Priority";
 
 class Task {
     name: string;
@@ -67,7 +68,7 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
             "database_id": databaseID,
             "sorts": [
                 {
-                    "property": "Priority",
+                    "property": priorityPropertyName,
                     "direction": "ascending",
                 },
                 {
@@ -105,13 +106,13 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
             "and": [
                 categoryFilter,
                 {
-                    "property": "Priority",
+                    "property": priorityPropertyName,
                     "number": {
                         "is_not_empty": true
                     }
                 },
                 {
-                    "property": "Priority",
+                    "property": priorityPropertyName,
                     "number": {
                         "greater_than": 0
                     }
@@ -141,16 +142,18 @@ const updatePriority = async (client : Client, task : Task) => {
     }
 
     console.log(`Update task '${task.name}' from ${task.priority} to ${task.newPriority}.`);
-    const response = await client.pages.update({
+
+    const request = {
         "page_id": task.pageID,
         "properties": {
-            "Priority": {
-                "number": task.newPriority,
-                "type": "number",
-                "id": "TypeScript complains if this is missing? 🤷‍♂️"
+            [priorityPropertyName]: {
+                "number": task.newPriority
             }
         },
-    });
+    };
+
+    const response = await client.pages.update(request as unknown as PagesUpdateParameters);
+    
     console.log(response);
 };
 
