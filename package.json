@@ -20,9 +20,14 @@
   "homepage": "https://github.com/liamhughes/NotionScripts#readme",
   "dependencies": {
     "@notionhq/client": "^0.1.6",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "lodash.replace": "^4.1.4",
+    "open": "^8.2.0",
+    "prompt": "^1.1.0"
   },
   "devDependencies": {
+    "@types/lodash.replace": "^4.1.6",
+    "@types/prompt": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
     "eslint": "^7.27.0",
