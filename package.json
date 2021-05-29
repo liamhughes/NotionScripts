@@ -20,6 +20,7 @@
   "homepage": "https://github.com/liamhughes/NotionScripts#readme",
   "dependencies": {
     "@notionhq/client": "^0.1.6",
+    "chalk": "^4.1.1",
     "dotenv": "^10.0.0",
     "lodash.replace": "^4.1.4",
     "open": "^8.2.0",
