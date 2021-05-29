@@ -152,9 +152,7 @@ const updatePriority = async (client : Client, task : Task) => {
         },
     };
 
-    const response = await client.pages.update(request as unknown as PagesUpdateParameters);
-    
-    console.log(response);
+    await client.pages.update(request as unknown as PagesUpdateParameters);
 };
 
 main();
