@@ -1,0 +1,219 @@
+{
+  "object": "database",
+  "id": "dae968ec-2e6a-4e15-aec8-3a25c790b1a3",
+  "created_time": "2020-08-09T04:28:35.206Z",
+  "last_edited_time": "2021-05-23T11:14:00.000Z",
+  "title": [
+    {
+      "type": "text",
+      "text": {
+        "content": "Tasks",
+        "link": null
+      },
+      "annotations": {
+        "bold": false,
+        "italic": false,
+        "strikethrough": false,
+        "underline": false,
+        "code": false,
+        "color": "default"
+      },
+      "plain_text": "Tasks",
+      "href": null
+    }
+  ],
+  "properties": {
+    "Category": {
+      "id": "-;ax",
+      "type": "select",
+      "select": {
+        "options": [
+          {
+            "id": "83271baf-e727-4621-9c82-e9d05562882d",
+            "name": "Personal",
+            "color": "orange"
+          },
+          {
+            "id": "cc103d6d-7d32-4d75-b631-c7030c03b089",
+            "name": "Work",
+            "color": "blue"
+          },
+          {
+            "id": "dfb24daf-db50-4d7b-8df3-2d345b78d763",
+            "name": "Work Goals",
+            "color": "green"
+          }
+        ]
+      }
+    },
+    "URL": {
+      "id": ":G'`",
+      "type": "url",
+      "url": {}
+    },
+    "Refined": {
+      "id": "?vMe",
+      "type": "checkbox",
+      "checkbox": {}
+    },
+    "Tags": {
+      "id": "Dgd[",
+      "type": "multi_select",
+      "multi_select": {
+        "options": [
+          {
+            "id": "2f112081-a045-4ff2-8f85-c49f7a94435e",
+            "name": "Architecture",
+            "color": "green"
+          },
+          {
+            "id": "a5ece605-d7d1-4c8f-883d-ba7de212c12b",
+            "name": "Birthday",
+            "color": "orange"
+          },
+          {
+            "id": "f7d673cc-0442-440a-b13f-8a88e115edcf",
+            "name": "Business Alignment",
+            "color": "blue"
+          },
+          {
+            "id": "34ce1d07-6528-4d89-8ea1-1c5987cf4d45",
+            "name": "Citizenship",
+            "color": "orange"
+          },
+          {
+            "id": "a46ff56f-2af9-4c14-b053-0f992f57ee19",
+            "name": "Communication",
+            "color": "green"
+          },
+          {
+            "id": "2adbc56a-984c-40d2-a54f-d99ea662640a",
+            "name": "Engineering",
+            "color": "green"
+          },
+          {
+            "id": "079143b1-cea2-4482-aff2-5f329b91c592",
+            "name": "Family",
+            "color": "orange"
+          },
+          {
+            "id": "1eeab229-1be8-4d68-9f54-4ce29f746bbd",
+            "name": "Financial",
+            "color": "orange"
+          },
+          {
+            "id": "bc283617-7223-4b36-a782-f7c9c3a0c201",
+            "name": "Growth",
+            "color": "yellow"
+          },
+          {
+            "id": "43c34389-97ca-47e8-a4bf-8cbb0dbdb989",
+            "name": "Health",
+            "color": "orange"
+          },
+          {
+            "id": "d68f65b4-79f5-488e-a293-9c9f752af39d",
+            "name": "Household",
+            "color": "orange"
+          },
+          {
+            "id": "05a9da07-ed2b-4052-8de3-b0df437e38cf",
+            "name": "Intentionality",
+            "color": "orange"
+          },
+          {
+            "id": "e8f8c1b7-f366-4f32-a46f-7767dd73e231",
+            "name": "Love God",
+            "color": "orange"
+          },
+          {
+            "id": "cd11251a-decc-4d47-b378-b544a822694f",
+            "name": "Love Others",
+            "color": "orange"
+          },
+          {
+            "id": "5be1f0e9-5194-4950-b97a-9327a7368839",
+            "name": "Minimalism",
+            "color": "orange"
+          },
+          {
+            "id": "7910bd16-042d-4530-b731-4c45bdc46651",
+            "name": "Movies",
+            "color": "orange"
+          },
+          {
+            "id": "24d7ed99-f542-4546-992c-cefdeb61a616",
+            "name": "Music",
+            "color": "orange"
+          },
+          {
+            "id": "0d04519d-e585-45d6-b004-ca8a1105c56b",
+            "name": "Organisation",
+            "color": "yellow"
+          },
+          {
+            "id": "5776b115-c234-4eb4-a7c9-6faa5dd2b6db",
+            "name": "Product",
+            "color": "blue"
+          },
+          {
+            "id": "2c403c3b-e581-436d-aeb4-926d6b886146",
+            "name": "Rest",
+            "color": "orange"
+          },
+          {
+            "id": "035b6075-4b27-4f20-9577-b43fc4fbd440",
+            "name": "Team Work",
+            "color": "blue"
+          },
+          {
+            "id": "3ae588f1-1bb3-47e5-bfc2-36555fab001c",
+            "name": "Technology",
+            "color": "orange"
+          },
+          {
+            "id": "5bcc6cec-ad5a-4dbe-9cad-2ea2a33a50ad",
+            "name": "Tools",
+            "color": "blue"
+          }
+        ]
+      }
+    },
+    "Not Rest Day": {
+      "id": "LxUW",
+      "type": "checkbox",
+      "checkbox": {}
+    },
+    "Priority": {
+      "id": "V,:G",
+      "type": "number",
+      "number": {
+        "format": "number"
+      }
+    },
+    "Start Date": {
+      "id": "gL(-",
+      "type": "date",
+      "date": {}
+    },
+    "Duration": {
+      "id": "pt-_",
+      "type": "number",
+      "number": {
+        "format": "number"
+      }
+    },
+    "Days Ago": {
+      "id": "y(_0",
+      "type": "formula",
+      "formula": {
+        "expression": "dateBetween(now(), prop(\"Start Date\"), \"days\")"
+      }
+    },
+    "Name": {
+      "id": "title",
+      "type": "title",
+      "title": {}
+    }
+  }
+}

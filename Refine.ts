@@ -8,7 +8,8 @@ import open from "open";
 import prompt from "prompt";
 import replace from 'lodash.replace';
 
-const category = "Personal";
+let category = "Personal";
+
 const categoryPropertyName = "Category";
 const databaseID = "dae968ec2e6a4e15aec83a25c790b1a3";
 const defaultCategory = "Personal";
@@ -44,6 +45,9 @@ class Task {
 }
 
 const main = async () => {
+
+    category = process.argv.splice(2)[0];
+
     const client = new Client({
         "auth": process.env.NOTION_TOKEN,
         "logLevel": LogLevel.DEBUG,
@@ -113,6 +117,8 @@ const main = async () => {
         for (const task of tasksToRefine) {
             await updatePriorityAndOpenUrl(client, task);
         }
+
+        tasksToRefine.forEach(t => t.isRefined = true);
     }
 };
 
@@ -165,8 +171,15 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
                 ]
             }
             : {
-                "property": categoryPropertyName,
-                "equals": category   
+                "or": [
+                    {
+                        "property": categoryPropertyName,
+                        "select": {
+                            "equals": category
+                        }
+                        
+                    }
+                ]
             };
 
         request.filter = categoryFilter;
