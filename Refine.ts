@@ -77,7 +77,7 @@ const main = async () => {
 
         while (highestPriorityIndex - lowestPriorityIndex > 1) {
 
-            console.log(chalk.yellow("======================================="));
+            console.log(chalk.grey("==============================================="));
 
             const thisRoundPriorityIndex = Math.floor((lowestPriorityIndex + highestPriorityIndex) / 2);
 
@@ -85,7 +85,7 @@ const main = async () => {
 
             tasksToRefine.forEach(t => console.log(chalk.blue(t.toString())));
 
-            console.log("================= VS. =================")
+            console.log(chalk.yellow("===================== vs. ====================="));
 
             thisRoundOtherTasks.forEach(t => console.log(chalk.green(t.toString())));
 
