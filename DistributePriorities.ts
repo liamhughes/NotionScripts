@@ -4,7 +4,8 @@ dotenv.config();
 import { Client, LogLevel } from "@notionhq/client";
 import { DatabasesQueryParameters, PagesUpdateParameters } from "@notionhq/client/build/src/api-endpoints";
 
-const category = "Personal";
+let category = "Personal";
+
 const categoryPropertyName = "Category";
 const databaseID = "dae968ec2e6a4e15aec83a25c790b1a3";
 const defaultCategory = "Personal";
@@ -33,6 +34,9 @@ class Task {
 }
 
 const main = async () => {
+
+    category = process.argv.splice(2)[0];
+
     const client = new Client({
         "auth": process.env.NOTION_TOKEN,
         "logLevel": LogLevel.DEBUG,
@@ -97,10 +101,16 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
                 ]
             }
             : {
-                "property": categoryPropertyName,
-                "equals": category   
+                "or": [
+                    {
+                        "property": categoryPropertyName,
+                        "select": {
+                            "equals": category
+                        }
+                        
+                    }
+                ]
             };
-        
 
         request.filter = {
             "and": [
