@@ -31,10 +31,12 @@ class Task {
     }
   
     public static fromPage(page : any) {
+        let priority = page.properties.Priority?.number ?? -0.5;
+
         return new Task(
             page.id,
             page.properties.Name.title[0].plain_text,
-            page.properties.Priority?.number,
+            priority,
             page.properties.Refined.checkbox
         );
     }
