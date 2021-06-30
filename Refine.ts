@@ -63,6 +63,11 @@ const main = async () => {
 
         const firstNotRefinedTask = tasks.find(t => !t.isRefined) as Task;
 
+        if (firstNotRefinedTask === undefined){
+            console.log("All tasks are refined.");
+            break;
+        }
+
         const firstNotRefinedTaskPriority = firstNotRefinedTask?.newPriority;
 
         const tasksToRefine = firstNotRefinedTaskPriority === undefined || firstNotRefinedTaskPriority <= 0
