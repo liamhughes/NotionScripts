@@ -14,6 +14,7 @@ const categoryPropertyName = "Category";
 const databaseID = "dae968ec2e6a4e15aec83a25c790b1a3";
 const defaultCategory = "Personal";
 const priorityPropertyName = "Priority";
+const refinedPropertyName = "Refined";
 
 class Task {
     name: string;
@@ -37,7 +38,7 @@ class Task {
             page.id,
             page.properties.Name.title[0].plain_text,
             priority,
-            page.properties.Refined.checkbox
+            page.properties[refinedPropertyName].checkbox
         );
     }
 
@@ -233,6 +234,9 @@ const updatePriorityAndOpenUrl = async (client : Client, task : Task) => {
             "properties": {
                 [priorityPropertyName]: {
                     "number": task.newPriority
+                },
+                [refinedPropertyName]: {
+                    "checkbox": true
                 }
             },
         };
