@@ -123,7 +123,7 @@ const main = async () => {
         tasksToRefine.forEach(t => t.newPriority = newPriority);
     
         for (const task of tasksToRefine) {
-            await updatePriorityAndOpenUrl(client, task);
+            await updateTaskAndOpenUrl(client, task);
         }
 
         tasksToRefine.forEach(t => t.isRefined = true);
@@ -222,28 +222,29 @@ const sortTasksByNewPriority = (tasks: Task[]) => {
     tasks.sort((t1,t2) => t1.newPriority - t2.newPriority);
 };
 
-const updatePriorityAndOpenUrl = async (client : Client, task : Task) => {
+const updateTaskAndOpenUrl = async (client : Client, task : Task) => {
+
     if (task.newPriority === task.originalPriority){
         console.log(`Task '${task.name}' already has a priority of ${task.originalPriority}.`);
     }
     else {
         console.log(`Update task '${task.name}' from ${task.originalPriority} to ${task.newPriority}.`);
-
-        const request = {
-            "page_id": task.pageID,
-            "properties": {
-                [priorityPropertyName]: {
-                    "number": task.newPriority
-                },
-                [refinedPropertyName]: {
-                    "checkbox": true
-                }
-            },
-        };
-
-        await client.pages.update(request as unknown as PagesUpdateParameters);
     }
-    
+
+    const request = {
+        "page_id": task.pageID,
+        "properties": {
+            [priorityPropertyName]: {
+                "number": task.newPriority
+            },
+            [refinedPropertyName]: {
+                "checkbox": true
+            }
+        },
+    };
+
+    await client.pages.update(request as unknown as PagesUpdateParameters);
+        
     open(`https://www.notion.so/${replace(task.pageID, new RegExp("-","g"), "")}`);
 };
 
