@@ -43,7 +43,7 @@ class Task {
     }
 
     public toString(){
-        return `${this.name} - ${this.newPriority}`;
+        return `${this.name}`;
     }
 }
 
