@@ -17,15 +17,17 @@ const priorityPropertyName = "Priority";
 const refinedPropertyName = "Refined";
 
 class Task {
-    name: string;
-    pageID: string;
-    originalPriority: number;
-    newPriority: number;
+    emoji: string | null;
     isRefined: boolean;
+    name: string;
+    newPriority: number;
+    originalPriority: number;
+    pageID: string;
   
-    constructor(pageID: string, name: string, priority: number, isRefined: boolean) {
+    constructor(pageID: string, name: string, emoji: string | null, priority: number, isRefined: boolean) {
         this.pageID = pageID;
         this.name = name;
+        this.emoji = emoji;
         this.originalPriority = priority;
         this.newPriority = priority;
         this.isRefined = isRefined;
@@ -37,13 +39,20 @@ class Task {
         return new Task(
             page.id,
             page.properties.Name.title[0].plain_text,
+            page.icon?.emoji,
             priority,
             page.properties[refinedPropertyName].checkbox
         );
     }
 
     public toString(){
-        return `${this.name}`;
+        var result = this.name;
+
+        if (this.emoji !== null && this.emoji !== undefined) {
+            result = this.emoji + " " + result;
+        }
+
+        return result;
     }
 }
 
@@ -79,8 +88,8 @@ const main = async () => {
             t.newPriority !== undefined && t.newPriority > 0 && t.newPriority !== firstNotRefinedTaskPriority
         );
 
-        otherTasks.unshift(new Task("", "Placeholder first task", 0, false));
-        otherTasks.push(new Task("", "Placeholder last task", otherTasks.slice(-1)[0].newPriority + 1, false));
+        otherTasks.unshift(new Task("", "Placeholder first task", null, 0, false));
+        otherTasks.push(new Task("", "Placeholder last task", null, otherTasks.slice(-1)[0].newPriority + 1, false));
 
         const orderedUniquePrioritiesOfOtherTasks = getOrderedUniquePriorities(otherTasks);
 
