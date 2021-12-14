@@ -8,11 +8,11 @@ import open from "open";
 import prompt from "prompt";
 import replace from 'lodash.replace';
 
-let category = "Personal";
+let list = "Personal";
 
-const categoryPropertyName = "Category";
+const listPropertyName = "List";
 const databaseID = "dae968ec2e6a4e15aec83a25c790b1a3";
-const defaultCategory = "Personal";
+const defaultList = "Personal";
 const priorityPropertyName = "Priority";
 const refinedPropertyName = "Refined";
 
@@ -58,7 +58,7 @@ class Task {
 
 const main = async () => {
 
-    category = process.argv.splice(2)[0];
+    list = process.argv.splice(2)[0];
 
     const client = new Client({
         "auth": process.env.NOTION_TOKEN,
@@ -169,18 +169,18 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
             ],
         };
 
-        const categoryFilter = category === defaultCategory
+        const listFilter = list === defaultList
             ? {
                 "or": [
                     {
-                        "property": categoryPropertyName,
+                        "property": listPropertyName,
                         "select": {
-                            "equals": defaultCategory
+                            "equals": defaultList
                         }
                         
                     },
                     {
-                        "property": categoryPropertyName,
+                        "property": listPropertyName,
                         "select": {
                             "is_empty": true
                         }
@@ -190,16 +190,16 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
             : {
                 "or": [
                     {
-                        "property": categoryPropertyName,
+                        "property": listPropertyName,
                         "select": {
-                            "equals": category
+                            "equals": list
                         }
                         
                     }
                 ]
             };
 
-        request.filter = categoryFilter;
+        request.filter = listFilter;
 
         if (nextCursor !== null)
             request.start_cursor = nextCursor;
