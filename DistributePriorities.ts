@@ -12,14 +12,16 @@ const defaultCategory = "Personal";
 const priorityPropertyName = "Priority";
 
 class Task {
+    emoji: string | null;
     name: string;
     pageID: string;
     priority: number;
     newPriority: number;
   
-    constructor(pageID: string, name: string, priority: number) {
+    constructor(pageID: string, name: string, emoji: string | null, priority: number) {
         this.pageID = pageID;
         this.name = name;
+        this.emoji = emoji;
         this.priority = priority;
         this.newPriority = priority;
     }
@@ -28,8 +30,19 @@ class Task {
         return new Task(
             page.id,
             page.properties.Name.title[0].plain_text,
+            page.icon?.emoji,
             page.properties.Priority.number
         );
+    }
+
+    public toString(){
+        var result = this.name;
+
+        if (this.emoji !== null && this.emoji !== undefined) {
+            result = this.emoji + " " + result;
+        }
+
+        return result;
     }
 }
 
@@ -147,11 +160,11 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
 
 const updatePriority = async (client : Client, task : Task) => {
     if (task.priority === task.newPriority){
-        console.log(`Task '${task.name}' already has a priority of ${task.priority}.`);
+        console.log(`Task '${task.toString()}' already has a priority of ${task.priority}.`);
         return;
     }
 
-    console.log(`Update task '${task.name}' from ${task.priority} to ${task.newPriority}.`);
+    console.log(`Update task '${task.toString()}' from ${task.priority} to ${task.newPriority}.`);
 
     const request = {
         "page_id": task.pageID,
