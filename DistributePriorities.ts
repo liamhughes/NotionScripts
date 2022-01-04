@@ -4,11 +4,11 @@ dotenv.config();
 import { Client, LogLevel } from "@notionhq/client";
 import { DatabasesQueryParameters, PagesUpdateParameters } from "@notionhq/client/build/src/api-endpoints";
 
-let category = "Personal";
+let list = "Personal";
 
-const categoryPropertyName = "Category";
+const listPropertyName = "List";
 const databaseID = "dae968ec2e6a4e15aec83a25c790b1a3";
-const defaultCategory = "Personal";
+const defaultList = "Personal";
 const priorityPropertyName = "Priority";
 
 class Task {
@@ -48,7 +48,7 @@ class Task {
 
 const main = async () => {
 
-    category = process.argv.splice(2)[0];
+    list = process.argv.splice(2)[0];
 
     const client = new Client({
         "auth": process.env.NOTION_TOKEN,
@@ -95,18 +95,18 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
             ],
         };
 
-        const categoryFilter = category === defaultCategory
+        const listFilter = list === defaultList
             ? {
                 "or": [
                     {
-                        "property": categoryPropertyName,
+                        "property": listPropertyName,
                         "select": {
-                            "equals": defaultCategory
+                            "equals": defaultList
                         }
                         
                     },
                     {
-                        "property": categoryPropertyName,
+                        "property": listPropertyName,
                         "select": {
                             "is_empty": true
                         }
@@ -116,9 +116,9 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
             : {
                 "or": [
                     {
-                        "property": categoryPropertyName,
+                        "property": listPropertyName,
                         "select": {
-                            "equals": category
+                            "equals": list
                         }
                         
                     }
@@ -127,7 +127,7 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
 
         request.filter = {
             "and": [
-                categoryFilter,
+                listFilter,
                 {
                     "property": priorityPropertyName,
                     "number": {
