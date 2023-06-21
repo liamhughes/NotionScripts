@@ -122,6 +122,10 @@ const main = async () => {
                 highestPriorityIndex = thisRoundPriorityIndex;
                 lowestPriorityIndex = thisRoundPriorityIndex;
             }
+            else if (result === "e") {
+                highestPriorityIndex = orderedUniquePrioritiesOfOtherTasks.findIndex(t => t > tasksToRefine[0].originalPriority);
+                lowestPriorityIndex = highestPriorityIndex - 1;
+            }
             else {
                 process.exit(0);
             }
@@ -219,9 +223,9 @@ const getTasks = async (client : Client) : Promise<Task[]> => {
 const promptSchema = {
     properties: {
       result: {
-        description: '(h)igher, (l)ower, (s)ame or (q)uit',
-        message: '(h)igher, (l)ower, (s)ame or (q)uit',
-        pattern: /^[hlsq]$/,
+        description: '(h)igher, (l)ower, (s)ame, l(e)ave or (q)uit',
+        message: '(h)igher, (l)ower, (s)ame, l(e)ave or (q)uit',
+        pattern: /^[hlseq]$/,
         required: true
       }
     }
