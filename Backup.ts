@@ -28,7 +28,7 @@ const main = async () => {
             "database_id": databaseID,
             "sorts": [
                 {
-                    "property": "Category",
+                    "property": "List",
                     "direction": "ascending",
                 },
                 {
