@@ -4,7 +4,7 @@ dotenv.config();
 import { Client, LogLevel } from "@notionhq/client";
 import { DatabasesQueryParameters, PagesUpdateParameters } from "@notionhq/client/build/src/api-endpoints";
 
-const databaseID = "09af3c9f29d346c3a3a072a6d4b80ada";
+const databaseID = "b054cc29c9a24f95b7588446804e1220";
 const rankPropertyName = "Rank";
 
 class Movie {
@@ -88,7 +88,7 @@ const getMovies = async (client : Client) : Promise<Movie[]> => {
         nextCursor = response.next_cursor;
     }
 
-    const pages = moviePages.filter(p => p.properties.Rank).map(Movie.fromPage);
+    const pages = moviePages.map(Movie.fromPage);
 
     return pages;
 };
