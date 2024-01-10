@@ -1,3 +1,7 @@
 /node_modules/
 *.js
 .env
+TimeLog.csv
+TimeLog.sync
+TimeLog.sync.backup
+TimeLog_Files/Logs
