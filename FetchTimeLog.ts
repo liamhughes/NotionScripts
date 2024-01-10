@@ -30,14 +30,17 @@ class Entry {
 
     public static fromPage(page: any) {
         let duration = page.properties.Duration?.formula.number ?? 0;
+        let cat1 = page.properties['Category 1']?.select?.name ?? 'Other';
+        let cat2 = page.properties['Category 2']?.select?.name ?? 'Other';
+        let cat3 = page.properties['Category 3']?.select?.name ?? 'Other';
 
         return new Entry(
             page.id,
             page.properties.Name.title[0]?.plain_text,
             page.properties.Start.date.start,
-            page.properties['Category 1']?.select?.name,
-            page.properties['Category 1-2']?.formula.string,
-            page.properties['Category 1-2-3']?.formula.string,
+            cat1,
+            cat1 + ' - ' + cat2,
+            cat1 + ' - ' + cat2 + ' - ' + cat3,
             duration
         );
     }
@@ -84,7 +87,7 @@ const getEntries = async (client: Client): Promise<Entry[]> => {
         // const listFilter: SinglePropertyFilter ={
         //       "property": startPropertyName,
         //       "date": {
-        //         "after": "2023-06-29"
+        //         "after": "2023-12-01"
         //       }
         //   };       
 
