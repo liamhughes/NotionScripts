@@ -13,42 +13,39 @@ class Entry {
     pageID: string;
     name: string;
     start: Date;
-    category1: string;
-    category12: string;
-    category123: string;
+    categoryA: string;
+    categoryB: string;
+    categoryAB: string;
     duration: number;
 
-    constructor(pageID: string, name: string, start: Date, category1: string, category12: string, category123: string, duration: number) {
+    constructor(pageID: string, name: string, start: Date, categoryA: string, categoryB: string, categoryAB: string, duration: number) {
         this.pageID = pageID;
         this.name = name;
         this.start = start;
-        this.category1 = category1;
-        this.category12 = category12;
-        this.category123 = category123;
+        this.categoryA = categoryA;
+        this.categoryB = categoryB;
+        this.categoryAB = categoryAB;
         this.duration = duration;
     }
 
     public static fromPage(page: any) {
         let duration = page.properties.Duration?.formula.number ?? 0;
-        let cat1 = page.properties['Category 1']?.select?.name ?? 'Other';
-        let cat2 = page.properties['Category 2']?.select?.name ?? 'Other';
-        let cat3 = page.properties['Category 3']?.select?.name ?? 'Other';
+        let catA = page.properties['Category A']?.select?.name ?? 'Other';
+        let catB = page.properties['Category B']?.select?.name ?? 'Other';
 
         return new Entry(
             page.id,
             page.properties.Name.title[0]?.plain_text,
             page.properties.Start.date.start,
-            cat1,
-            cat1 + ' - ' + cat2,
-            cat1 + ' - ' + cat2 + ' - ' + cat3,
+            catA,
+            catB,
+            catA + ' / ' + catB,
             duration
         );
     }
 
     public toString() {
         var result = this.name;
-
-
         return result;
     }
 }
