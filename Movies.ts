@@ -3,10 +3,9 @@ dotenv.config();
 
 import { Client, LogLevel } from "@notionhq/client";
 import { DatabasesQueryParameters, PagesUpdateParameters } from "@notionhq/client/build/src/api-endpoints";
+import { SinglePropertyFilter } from "@notionhq/client/build/src/api-types";
 import chalk from "chalk";
-import open from "open";
 import prompt from "prompt";
-import replace from 'lodash.replace';
 
 const databaseID = "09af3c9f29d346c3a3a072a6d4b80ada"; // https://www.notion.so/09af3c9f29d346c3a3a072a6d4b80ada?v=45267bf287344859b6f3cea6d3342fc5
 const rankPropertyName = "Rank";
@@ -150,11 +149,20 @@ const getMovies = async (client : Client) : Promise<Movie[]> => {
                     "direction": "ascending",
                 },
                 {
-                    "property": "Date",
-                    "direction": "descending",
+                    "property": "Watch Date",
+                    "direction": "ascending",
                 }
             ],
         };
+
+        const listFilter: SinglePropertyFilter = {
+            "property": "Watch Date",
+            "date": {
+                "after": "2021-12-31"
+            }
+        };
+
+        request.filter = listFilter;
 
         if (nextCursor !== null)
             request.start_cursor = nextCursor;
